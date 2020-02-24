@@ -1,0 +1,16 @@
+{
+    "name": "manvanhau/baokim-sdk",
+    "authors": [
+        {
+            "name": "Mẫn Văn Hậu",
+            "email": "manhau.174@gmail.com"
+        }
+    ],
+    "require": {
+        "firebase/php-jwt": "^5.0",
+        "guzzlehttp/guzzle": "^6.5"
+    },
+    "autoload": {
+
+    }
+}
