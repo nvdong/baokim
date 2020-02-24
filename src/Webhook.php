@@ -1,4 +1,5 @@
 <?php
+namespace BaokimSDK;
 class Webhook {
     public $sec;
 

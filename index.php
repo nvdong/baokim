@@ -1,6 +1,6 @@
 <?php
-    use BaokimSDK\BaoKim;
-    $bksdk = new BaoKim('*****', '*****');
+    require_once('src/BaoKim.php');
+    $bksdk = new BaoKim('a18ff78e7a9e44f38de372e093d87ca1', '9623ac03057e433f95d86cf4f3bef5cc');
 //  echo BaoKim::getApiKey();
     $data = [
         'payment_method_types'    => [1, 2, 3],
