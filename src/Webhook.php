@@ -1,5 +1,5 @@
 <?php
-namespace BaokimSDK;
+namespace BaoKimSDK;
 class Webhook {
     public $sec;
 
