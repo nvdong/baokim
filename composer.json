@@ -6,6 +6,10 @@
             "email": "hotrokhachhang@baokim.vn"
         }
     ],
+    "type": "library",
+    "description": "baokim api, baokim sdk",
+    "keywords": ["baokimApi","baokim"],
+    "homepage": "https://github.com/nvdong/baokim",
     "license": "MIT",
     "require": {
         "firebase/php-jwt": "^5.0",
