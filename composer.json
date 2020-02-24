@@ -16,8 +16,8 @@
         "guzzlehttp/guzzle": "~6.3"
     },
     "autoload": {
-        "psr-4": {
-            "BaoKimSDK" : "src"
+        "psr-0": {
+            "BaoKimSDK\\" : "src"
         }
     }
 }
