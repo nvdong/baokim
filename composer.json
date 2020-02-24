@@ -1,5 +1,5 @@
 {
-    "name": "baokim-sdk",
+    "name": "baokim",
     "authors": [
         {
             "name": "Bảo Kim",
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "BaoKimSDK\\" : "src"
+            "BaoKimSDK" : "src"
         }
     }
 }
