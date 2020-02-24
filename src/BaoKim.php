@@ -17,7 +17,9 @@ class BaoKim {
 
     public function __construct($key, $sec)
     {
-        return (self::getToken($key, $sec));
+        $this->key = $key;
+        $this->secret = $sec;
+        return (self::getToken());
     }
 
     public function create($data) {
@@ -34,8 +36,7 @@ class BaoKim {
             'customer_email'    =>  $data['customer_email'],
             'customer_phone'    =>  $data['customer_phone'],
         ];
-        $apiUrl = API_URL . BASE_URI;
-        $response = $client->request("POST", $apiUrl, $options);
+        $response = $client->request("POST", API_URL . BASE_URI, $options);
         $body = json_decode($response->getBody()->getContents());
 
         if(!isset($body->code) || $body->code != self::ERR_NONE){
@@ -93,14 +94,14 @@ class BaoKim {
 	/**
 	 * Get JWT
 	 */
-	public function getToken($key, $sec){
+	public function getToken(){
 		if(!$this->_jwt)
-			self::refreshToken($key, $sec);
+			self::refreshToken($this->key, $this->secret);
 
 		try {
-			JWT::decode($this->_jwt, $sec, array('HS256'));
+			JWT::decode($this->_jwt, $this->secret, array('HS256'));
 		}catch(Exception $e){
-			self::refreshToken($key, $sec);
+			self::refreshToken($this->key, $this->secret);
 		}
 
 		return $this->_jwt;
