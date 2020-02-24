@@ -1,9 +1,9 @@
 {
-    "name": "manvanhau/baokim-sdk",
+    "name": "BaokimSDK",
     "authors": [
         {
-            "name": "Mẫn Văn Hậu",
-            "email": "manhau.174@gmail.com"
+            "name": "Bảo Kim",
+            "email": "hotrokhachhang@baokim.vn"
         }
     ],
     "require": {
