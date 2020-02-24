@@ -29,7 +29,7 @@ class BaoKim {
             'payment_method_types'  =>  $data['payment_method_types'],
             'line_items'    =>  $data['line_items'],
             'success_url'   =>  $data['success_url'],
-            'cancel_ur  l'    =>  $data['cancel_url'],
+            'cancel_url'    =>  $data['cancel_url'],
             'webhook_url'   =>  $data['webhook_url'],
             'customer_email'    =>  $data['customer_email'],
             'customer_phone'    =>  $data['customer_phone'],
