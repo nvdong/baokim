@@ -25,7 +25,7 @@ class BaoKim {
         return self::$_jwt;
     }
 
-    public function refreshToken($key, $sec){
+    public static function refreshToken($key, $sec){
 
 		$tokenId    = base64_encode(random_bytes(32));
 		$issuedAt   = time();

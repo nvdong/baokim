@@ -39,7 +39,6 @@ class Session {
             throw new Exception($msg);
         }
 
-        var_dump($body->data); die;
         return $body->data;
     }
 }
