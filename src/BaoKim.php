@@ -3,57 +3,26 @@
 namespace BaoKimSDK;
 
 require_once(__DIR__ . './../vendor/autoload.php');
-require_once(__DIR__ . './../config/config.php');
 
 use Firebase\JWT\JWT;
 
 class BaoKim {
-    public $key;
-    public $secret;
-    public $_jwt;
+    public static $key;
+    public static $secret;
+    public static $_jwt;
     const TOKEN_EXPIRE = 86400; //token expire time in seconds
     const ENCODE_ALG = 'HS256';
-    const ERR_NONE = 0;
 
-    public function __construct($key, $sec)
+    public static function setKey($key, $secret)
     {
-        $this->key = $key;
-        $this->secret = $sec;
-        return (self::getToken());
+        self::$key = $key;
+        self::$secret = $secret;
+        self::getToken();
     }
 
-    public function create($data) {
-        $client = new GuzzleHttp\Client(['timeout' => 20.0]);
-        $options['query']['jwt'] = $this->_jwt;
-
-        $options['form_params'] = [
-            'mrc_order_id'  =>  $data['mrc_order_id'],
-            'payment_method_types'  =>  $data['payment_method_types'],
-            'line_items'    =>  $data['line_items'],
-            'success_url'   =>  $data['success_url'],
-            'cancel_url'    =>  $data['cancel_url'],
-            'webhook_url'   =>  $data['webhook_url'],
-            'customer_email'    =>  $data['customer_email'],
-            'customer_phone'    =>  $data['customer_phone'],
-        ];
-        $response = $client->request("POST", API_URL . BASE_URI, $options);
-        $body = json_decode($response->getBody()->getContents());
-
-        if(!isset($body->code) || $body->code != self::ERR_NONE){
-            $body->message=(array)$body->message;
-            $msg = '';
-            $err_data=[];
-            foreach($body->message as $row){
-                if(is_array($row))
-                    $msg.=implode(', ', $row);
-                else
-                    $err_data[]=$row;
-            }
-            $msg .=implode(', ', $err_data);
-            throw new Exception($msg);
-        }
-
-        header("Location: " . $body->data->payment_url);
+    public static function getKey()
+    {
+        return self::$_jwt;
     }
 
     public function refreshToken($key, $sec){
@@ -82,29 +51,29 @@ class BaoKim {
 		 *
 		 * The output string can be validated at http://jwt.io/
 		 */
-		$this->_jwt = JWT::encode(
+		self::$_jwt = JWT::encode(
 			$data,      //Data to be encoded in the JWT
 			$sec, // The signing key
 			'HS256'     // Algorithm used to sign the token, see https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40#section-3
 		);
 
-		return $this->_jwt;
+		return self::$_jwt;
 	}
 
 	/**
 	 * Get JWT
 	 */
-	public function getToken(){
-		if(!$this->_jwt)
-			self::refreshToken($this->key, $this->secret);
+	public static function getToken(){
+		if(!self::$_jwt)
+			self::refreshToken(self::$key, self::$secret);
 
 		try {
-			JWT::decode($this->_jwt, $this->secret, array('HS256'));
+			JWT::decode(self::$_jwt, self::$secret, array('HS256'));
 		}catch(Exception $e){
-			self::refreshToken($this->key, $this->secret);
+			self::refreshToken(self::$key, self::$$secret);
 		}
 
-		return $this->_jwt;
+		return self::$_jwt;
 	}
 }
 ?>

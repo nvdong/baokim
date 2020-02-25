@@ -1,7 +1,10 @@
 <?php
-    require_once('src/BaoKim.php');
-    $bksdk = new BaoKim('a18ff78e7a9e44f38de372e093d87ca1', '9623ac03057e433f95d86cf4f3bef5cc');
-//  echo BaoKim::getApiKey();
+    require_once(__DIR__ . '/src/BaoKim.php');
+    require_once(__DIR__ . '/src/Session.php');
+    use BaoKimSDK\BaoKim;
+    use BaoKimSDK\Session;
+
+    BaoKim::setKey('a18*****', '962*****');
     $data = [
         'payment_method_types'    => [1, 2, 3],
         'mrc_order_id'   =>  'mrcOrderId_' . time(),
@@ -30,9 +33,5 @@
         'customer_phone' => '0397471667',
     ];
 
-    $res = $bksdk->create($data);
-    echo '<pre>';
-    var_dump($res);
-    echo '</pre>';
-    die();
+    Session::create($data);
 ?>

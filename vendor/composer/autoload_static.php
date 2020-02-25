@@ -53,11 +53,22 @@ class ComposerStaticInit3008797bb24b7e962b9efa8db93205d0
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'B' => 
+        array (
+            'BaoKimSDK\\' => 
+            array (
+                0 => __DIR__ . '/../..' . '/src',
+            ),
+        ),
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit3008797bb24b7e962b9efa8db93205d0::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit3008797bb24b7e962b9efa8db93205d0::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit3008797bb24b7e962b9efa8db93205d0::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }
