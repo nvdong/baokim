@@ -3,7 +3,7 @@ namespace BaokimSDK;
 require_once(__DIR__ . '/../vendor/autoload.php');
 require_once(__DIR__ . '/../config/config.php');
 use BaokimSDK\BaoKim;
-use GuzzleHttp\Client;
+use \GuzzleHttp\Client;
 
 class Session {
     const ERR_NONE = 0;
@@ -24,7 +24,9 @@ class Session {
     public static function create($data) {
         $client = new Client(['timeout' => 20.0]);
         $options['query']['jwt'] = BaoKim::$_jwt;
-        $response = $client->request("POST", API_URL . BASE_URI, ['form_params' => $data]);
+        $options['form_params'] = $data;
+
+        $response = $client->request("POST", API_URL . BASE_URI, $options);
         $body = json_decode($response->getBody()->getContents());
 
         if(!isset($body->code) || $body->code != self::ERR_NONE){
