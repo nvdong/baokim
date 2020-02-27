@@ -1,5 +1,6 @@
 <?php
 namespace BaoKimSDK;
+
 class Webhook {
     public $sec;
 
@@ -8,6 +9,10 @@ class Webhook {
         $this->sec = $sec;
     }
 
+    /**
+     * @param $jsonWebhookData JSON format
+     * @return bool
+     */
     public function verify($jsonWebhookData)
     {
         $webhookData = json_decode($jsonWebhookData, true);

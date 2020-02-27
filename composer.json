@@ -17,7 +17,8 @@
     },
     "autoload": {
         "psr-0": {
-            "BaoKimSDK\\" : "src"
+            "BaoKimSDK\\" : "src",
+            "Exceptions\\" : "exceptions"
         }
     }
 }

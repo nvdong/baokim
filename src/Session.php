@@ -3,7 +3,9 @@ namespace BaokimSDK;
 require_once(__DIR__ . '/../vendor/autoload.php');
 require_once(__DIR__ . '/../config/config.php');
 use BaokimSDK\BaoKim;
+use Exceptions\BaoKimException;
 use \GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 class Session {
     const ERR_NONE = 0;
@@ -25,25 +27,29 @@ class Session {
         $client = new Client(['timeout' => 20.0]);
         $options['query']['jwt'] = BaoKim::$_jwt;
         $options['form_params'] = $data;
+        try{
+            $response = $client->request("POST", API_URL . BASE_URI, $options);
+            die($response->getStatusCode());
+            $body = json_decode($response->getBody()->getContents());
 
-        $response = $client->request("POST", API_URL . BASE_URI, $options);
-        $body = json_decode($response->getBody()->getContents());
-
-        if(!isset($body->code) || $body->code != self::ERR_NONE){
-            $body->message=(array)$body->message;
-            $msg = '';
-            $err_data=[];
-            foreach($body->message as $row){
-                if(is_array($row))
-                    $msg.=implode(', ', $row);
-                else
-                    $err_data[]=$row;
+            if(!isset($body->code) || $body->code != self::ERR_NONE){
+                $body->message=(array)$body->message;
+                $msg = '';
+                $err_data=[];
+                foreach($body->message as $row){
+                    if(is_array($row))
+                        $msg.=implode(', ', $row);
+                    else
+                        $err_data[]=$row;
+                }
+                $msg .=implode(', ', $err_data);
+                throw new BaoKimException($body->code, $msg);
             }
-            $msg .=implode(', ', $err_data);
-            throw new Exception($msg);
-        }
 
-        return $body->data;
+            return $body->data;
+        } catch (\Exception $e) {
+            throw new BaoKimException(BaoKimException::ERR_SYSTEM, $e->getMessage());
+        }
     }
 }
 ?>
