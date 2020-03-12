@@ -70,7 +70,7 @@ class BaoKim {
 		try {
 			JWT::decode(self::$_jwt, self::$secret, array('HS256'));
 		}catch(Exception $e){
-			self::refreshToken(self::$key, self::$$secret);
+			self::refreshToken(self::$key, self::$secret);
 		}
 
 		return self::$_jwt;
