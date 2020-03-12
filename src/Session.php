@@ -29,7 +29,7 @@ class Session {
         $options['form_params'] = $data;
         try{
             $response = $client->request("POST", API_URL . BASE_URI, $options);
-            die($response->getStatusCode());
+
             $body = json_decode($response->getBody()->getContents());
 
             if(!isset($body->code) || $body->code != self::ERR_NONE){
