@@ -35,7 +35,7 @@
         ];
 
         Session::create($data);
-    } catch (\Exceptions\BaoKimException $bke) {
+    } catch (Exceptions\BaoKimException $bke) {
         die($bke->getMessage());
     }
 ?>
