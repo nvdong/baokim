@@ -43,7 +43,7 @@ class Session {
                         $err_data[]=$row;
                 }
                 $msg .=implode(', ', $err_data);
-                throw new \BaoKimException($body->code, $msg);
+                throw new BaoKimException($body->code, $msg);
             }
 
             return $body->data;
