@@ -54,13 +54,6 @@ class ComposerStaticInit3008797bb24b7e962b9efa8db93205d0
     );
 
     public static $prefixesPsr0 = array (
-        'E' => 
-        array (
-            'Exceptions\\' => 
-            array (
-                0 => __DIR__ . '/../..' . '/exceptions',
-            ),
-        ),
         'B' => 
         array (
             'BaoKimSDK\\' => 

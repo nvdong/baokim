@@ -6,6 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Exceptions\\' => array($baseDir . '/exceptions'),
     'BaoKimSDK\\' => array($baseDir . '/src'),
 );

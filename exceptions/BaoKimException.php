@@ -1,6 +1,6 @@
 <?php
-namespace Exceptions;
-require_once(__DIR__ . '/../langs/exceptions.php');
+namespace BaoKimSDK\Exceptions;
+require_once(__DIR__ . '/../../langs/exceptions.php');
 use Exception;
 
 class BaoKimException extends Exception

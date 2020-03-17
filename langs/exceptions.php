@@ -1,5 +1,5 @@
 <?php
-use Exceptions\BaoKimException;
+use BaoKimSDK\Exceptions\BaoKimException;
     $trans = [
         BaoKimException::ERR_VALIDATE =>    'Dữ liệu gửi lên không hợp lệ',
         BaoKimException::ERR_SYSTEM =>    'Lỗi hệ thống',

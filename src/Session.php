@@ -3,7 +3,7 @@ namespace BaokimSDK;
 require_once(__DIR__ . '/../vendor/autoload.php');
 require_once(__DIR__ . '/../config/config.php');
 use BaokimSDK\BaoKim;
-use Exceptions\BaoKimException;
+use BaoKimSDK\Exceptions\BaoKimException;
 use \GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 
@@ -43,7 +43,7 @@ class Session {
                         $err_data[]=$row;
                 }
                 $msg .=implode(', ', $err_data);
-                throw new BaoKimException($body->code, $msg);
+                throw new \BaoKimException($body->code, $msg);
             }
 
             return $body->data;
