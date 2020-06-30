@@ -1,7 +1,7 @@
 <?php
     require_once(__DIR__ . '/src/BaoKim.php');
     require_once(__DIR__ . '/src/Session.php');
-    require_once(__DIR__ . '/exceptions/BaoKimException.php');
+    require_once(__DIR__ . '/src/exceptions/BaoKimException.php');
     use BaoKimSDK\BaoKim;
     use BaoKimSDK\Session;
     try {
