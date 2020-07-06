@@ -5,7 +5,7 @@
     use BaoKimSDK\BaoKim;
     use BaoKimSDK\Session;
     try {
-        BaoKim::setUrl('https://api.baokim.vn');
+        BaoKim::setUrl('https://dev-api.baokim.vn');
         BaoKim::setKey('a18ff78e7a9e44f38de372e093d87ca1', '9623ac03057e433f95d86cf4f3bef5cc');
         $data = [
             'payment_method_types' => [1, 2, 3],
