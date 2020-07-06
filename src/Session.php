@@ -1,5 +1,5 @@
 <?php
-namespace BaokimSDK;
+namespace BaoKimSDK;
 require_once(__DIR__ . '/../vendor/autoload.php');
 require_once(__DIR__ . '/../config/config.php');
 use BaokimSDK\BaoKim;
@@ -28,7 +28,8 @@ class Session {
         $options['query']['jwt'] = BaoKim::$_jwt;
         $options['form_params'] = $data;
         try{
-            $response = $client->request("POST", API_URL . BASE_URI, $options);
+            $url = BaoKim::$apiUrl . BaoKim::$baseUri;
+            $response = $client->request("POST",  $url, $options);
 
             $body = json_decode($response->getBody()->getContents());
 

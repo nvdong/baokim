@@ -3,6 +3,7 @@
 namespace BaoKimSDK;
 
 require_once(__DIR__ . '/../vendor/autoload.php');
+require_once(__DIR__ . '/../config/config.php');
 
 use Firebase\JWT\JWT;
 
@@ -10,6 +11,9 @@ class BaoKim {
     public static $key;
     public static $secret;
     public static $_jwt;
+    public static $apiUrl = API_URL;
+    public static $baseUri = BASE_URI;
+
     const TOKEN_EXPIRE = 86400; //token expire time in seconds
     const ENCODE_ALG = 'HS256';
 
@@ -25,6 +29,12 @@ class BaoKim {
         return self::$_jwt;
     }
 
+    public static function setUrl($apiUrl, $baseUri = '') {
+        self::$apiUrl = $apiUrl;
+        if ($baseUri) {
+            self::$baseUri = $baseUri;
+        }
+    }
     public static function refreshToken($key, $sec){
 
 		$tokenId    = base64_encode(random_bytes(32));
